@@ -1,7 +1,6 @@
 import React from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Image, Pressable, Text, View } from 'react-native';
 import { Artwork } from '../api/artworks';
-import { Image } from 'expo-image';
 import { Palette, Settings, textSize } from '../ui/theme';
 
 export function ArtworkCard({ art, onOpen, colors, settings, localImage }: {
@@ -11,7 +10,7 @@ export function ArtworkCard({ art, onOpen, colors, settings, localImage }: {
     onPress={onOpen} style={{ backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1,
       borderRadius: 14, marginHorizontal: 16, marginVertical: 6, overflow: 'hidden', minHeight: 132, flexDirection: 'row' }}>
     {(localImage || (art.imageUrl && !settings.lowData)) ? <Image source={{ uri: localImage || art.imageUrl }}
-      style={{ width: 112, height: 132, backgroundColor: colors.soft }} contentFit="cover" cachePolicy="disk"
+      style={{ width: 112, height: 132, backgroundColor: colors.soft }} resizeMode="cover"
       accessibilityLabel={`Image of ${art.title}`} /> : <View style={{ width: 112, backgroundColor: colors.soft, justifyContent: 'center' }}><Text style={{ textAlign: 'center', color: colors.muted }}>Image hidden</Text></View>}
     <View style={{ flex: 1, padding: 14, justifyContent: 'center' }}>
       <Text numberOfLines={settings.largeText ? 3 : 2} style={{ fontWeight: '700', color: colors.ink, fontSize: textSize(18, settings) }}>{art.title}</Text>

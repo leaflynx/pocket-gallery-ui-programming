@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
-import { Image } from 'expo-image';
+import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import { Artwork } from '../api/artworks';
 import { Saved } from '../db/store';
 import { Palette, Settings, textSize } from '../ui/theme';
@@ -15,7 +14,7 @@ export function DetailScreen({ art, saved, busy, error, onBack, onSave, onRemove
     <Pressable accessibilityRole="button" accessibilityLabel="Back to artworks" onPress={onBack} style={{ padding: 18, minHeight: 52 }}>
       <Text style={{ color: colors.accent, fontSize: textSize(17, settings), fontWeight: '700' }}>← Back</Text>
     </Pressable>
-    {image && showImage ? <Image source={{ uri: image }} contentFit="contain" cachePolicy="disk"
+    {image && showImage ? <Image source={{ uri: image }} resizeMode="contain"
       accessibilityLabel={`Artwork image: ${art.title}`} style={{ width: '100%', height: 380, backgroundColor: colors.soft }} />
       : <Pressable accessibilityRole="button" accessibilityLabel={`Load image for ${art.title}`} onPress={() => setShowImage(true)}
         style={{ height: 200, justifyContent: 'center', backgroundColor: colors.soft }}>
