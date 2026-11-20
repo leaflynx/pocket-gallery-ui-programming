@@ -21,7 +21,7 @@ npx expo-doctor
 
 The API is public and needs no key. Search requires internet access. Saved metadata is stored on-device in SQLite through Drizzle ORM. On Android and iOS, saving downloads the image to the app's documents folder; if the download fails, the saved metadata still opens, but its image may need internet. The web build saves metadata in SQLite, but does not download image files for offline use.
 
-For a web demo, run `npx expo export --platform web` and serve the exported folder with `Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Embedder-Policy: credentialless` headers, as Expo SQLite web needs SharedArrayBuffer. On native Expo Go those web headers are irrelevant.
+For a web demo, run `npx expo export --platform web` and then `python scripts/serve_web.py` (Python 3). Open `http://127.0.0.1:8090/`. This server sets the `Cross-Origin-Opener-Policy` and `Cross-Origin-Embedder-Policy` headers required by Expo SQLite web. On native Expo Go those web headers are irrelevant.
 
 ## Layout
 
